@@ -1,0 +1,27 @@
+<h1><%= team.label %></h1>
+<p>Welcome to the <strong><%= team.label %></strong> team page.</p>
+
+<% if (expenses && expenses.length > 0) { %>
+<h3>Expenses</h3>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Item</th>
+      <th>Amount ($)</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% expenses.forEach(exp => { %>
+    <tr>
+      <td><%= exp.name %></td>
+      <td><%= exp.item %></td>
+      <td><%= exp.amount %></td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+<div class="alert alert-info"><strong>Total:</strong> $<%= total %></div>
+<% } else { %>
+<p>No expenses found for this team.</p>
+<% } %>

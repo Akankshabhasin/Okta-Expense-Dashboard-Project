@@ -1,0 +1,16 @@
+<h1>Dashboard</h1>
+<p>Welcome, <%= user.profile.displayName || user.profile.name %></p>
+
+<h3>Your Teams</h3>
+<% if (teams && teams.length > 0) { %>
+<ul class="list-group">
+  <% teams.forEach(team => { %>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <%= team.label %>
+    <a href="/teams/<%= team.id %>" class="btn btn-primary btn-sm">View</a>
+  </li>
+  <% }) %>
+</ul>
+<% } else { %>
+<p>You are not part of any teams yet.</p>
+<% } %>

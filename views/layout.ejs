@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= typeof title !== 'undefined' ? title : 'Enterprise Expense Splitter' %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      .content {
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+      <div class="container">
+        <a class="navbar-brand" href="/dashboard">Expense Dashboard</a>
+        <div>
+          <% if (user) { %>
+          <a href="/dashboard" class="btn btn-light btn-sm me-2">Dashboard</a>
+          <% if (user.roles && (user.roles.includes('lead') || user.roles.includes('finance'))) { %>
+          <a href="/approvals" class="btn btn-warning btn-sm me-2">Approvals</a>
+          <% } %>
+          <a href="/profile" class="btn btn-light btn-sm me-2">Profile</a>
+          <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+          <% } else { %>
+          <a href="/login" class="btn btn-success btn-sm">Login</a>
+          <% } %>
+        </div>
+      </div>
+    </nav>
+
+  <div class="container content">
+    <%- body %>
+  </div>
+
+  <footer class="text-center mt-5 mb-3 text-muted">
+    &copy; Okta Inc. Expense Dashboard
+  </footer>
+  </body>
+</html>

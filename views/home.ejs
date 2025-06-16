@@ -1,0 +1,13 @@
+<% if (user) { %>
+<h1>Welcome, <%= user.profile.displayName || user.profile.name || 'User' %>!</h1>
+<% } else { %>
+<h1>Welcome</h1>
+<% } %>
+
+<p class="lead">Log your expenses and manage your team's spending on the dashboard.</p>
+
+<% if (user) { %>
+<a href="/dashboard" class="btn btn-primary">Go to Dashboard</a>
+<% } else { %>
+<a href="/login" class="btn btn-success">Login</a>
+<% } %>
