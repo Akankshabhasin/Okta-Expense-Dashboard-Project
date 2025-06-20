@@ -1,4 +1,4 @@
-## Team Expense Dashboard with Okta SSO, Custom Claims and Passwordless Login
+## Expense Dashboard Built with Express.js, Okta and Passport.js
 
 This project shows how to build a secure team-scoped expense dashboard with a secure login system. Users see expenses only for their team, making it easy to track spending without hassle.
 
@@ -14,20 +14,20 @@ This project shows how to build a secure team-scoped expense dashboard with a se
 
 ## Getting Started
 
-1\. Clone the repository 
+**1\. Clone the repository**
 
 ```
 git clone https://github.com/your-username/Okta-Expense-Dashboard-Project.git
 cd Okta-Expense-Dashboard-Project
 ```
 
-2\. Install Dependencies
+**2\. Install Dependencies**
 
 ```
 npm install
 ```
 
-3\. Configure .env File
+**3\. Configure .env File**
 
 ```
 OKTA_ISSUER=https://<Add your custom Authorization URL here>/oauth2/default 
@@ -38,24 +38,24 @@ POST_LOGOUT_URL=http://localhost:3000
 ALL_TEAMS_NAME=TeamName1,TeamName2,Team Name3
 ```
 
-4\. Create an OIDC Application in Okta
+**4\. Create an OIDC Application in Okta**
 
-1. Sign up for a free [Integrator Free Plan](https://developer.okta.com/signup/). If you already have an account, directly [login](https://developer.okta.com/login/) to the [Okta Developer Console](https://developer.okta.com/signup/).   
-2. Navigate to **Applications** \> **Create App Integration**.  
-3. Choose:  
-   1. **Sign-in method:** OIDC \- OpenID Connect  
-   2. **Application type:** Web Application  
-4. Fill in:  
-   1. **App name:** (e.g., `My Express App`)  
-   2. **Sign-in redirect URIs:** `http://localhost:3000/authorization-code/callback`  
-   3. **Sign-out redirect URIs:** [`http://localhost:3000`](http://localhost:3000)  
-5. Configure an [access policy](https://developer.okta.com/docs/guides/configure-access-policy/main/)
+  1. Sign up for a free [Integrator Free Plan](https://developer.okta.com/signup/). If you already have an account, directly [login](https://developer.okta.com/login/) to the [Okta Developer Console](https://developer.okta.com/signup/).   
+  2. Navigate to **Applications** \> **Create App Integration**.  
+  3. Choose:  
+    1. **Sign-in method:** OIDC \- OpenID Connect  
+    2. **Application type:** Web Application  
+  4. Fill in:  
+    1. **App name:** (e.g., `My Express App`)  
+    2. **Sign-in redirect URIs:** `http://localhost:3000/authorization-code/callback`  
+    3. **Sign-out redirect URIs:** [`http://localhost:3000`](http://localhost:3000)  
+    5. Configure an [access policy](https://developer.okta.com/docs/guides/configure-access-policy/main/)
 
 ### **Setting Up Departments and Custom Claims in Okta**
 
 This project uses a custom user attribute (`department`) in Okta to scope access and filter expense data by team. Here’s how to set it up:
 
-### **1\. Create a Custom User Profile Attribute**
+#### **1\. Create a Custom User Profile Attribute**
 
 * Log in to your Okta Admin Console
 
@@ -71,17 +71,15 @@ This project uses a custom user attribute (`department`) in Okta to scope access
 
   * Data type: string
 
-  * Optional: Add predefined values such as `Finance`, `Marketing`, `Customer Success`, `all` (for admin)
-
-### **2\. Assign Departments to Users**
+#### **2\. Assign Departments to Users**
 
 * Go to **Directory \> People**
 
 * Select a user, click **Profile**
 
-* Set the `department` field to the user’s team (e.g., Finance, Marketing)
+* Set the `department` field to the user’s team (e.g., `Finance`, `Marketing`, `Customer Success`, `all` (for admin))
 
-### **3\. Create a Custom Claim in the Authorization Server**
+#### **3\. Create a Custom Claim in the Authorization Server**
 
 * In the Admin Console, go to **Security \> API \> Authorization Servers**
 
