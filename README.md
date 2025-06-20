@@ -10,7 +10,7 @@ This project shows how to build a secure team-scoped expense dashboard with a se
 
 ## Prerequisites
 
-* Node.js installed (v14+ recommended)
+* Node.js installed (v22+ recommended)
 
 ## Getting Started
 
@@ -24,7 +24,7 @@ cd Okta-Expense-Dashboard-Project
 **2\. Install Dependencies**
 
 ```
-npm install
+npm ci
 ```
 
 **3\. Configure .env File**
@@ -51,15 +51,13 @@ ALL_TEAMS_NAME=TeamName1,TeamName2,Team Name3
     3. **Sign-out redirect URIs:** [`http://localhost:3000`](http://localhost:3000)  
     5. Configure an [access policy](https://developer.okta.com/docs/guides/configure-access-policy/main/)
 
-### **Setting Up Departments and Custom Claims in Okta**
+### **Set Up Custom Claims for Department Information:** /suggested new or maybe mention
 
 This project uses a custom user attribute (`department`) in Okta to scope access and filter expense data by team. Here’s how to set it up:
 
 #### **1\. Create a Custom User Profile Attribute**
 
-* Log in to your Okta Admin Console
-
-* Navigate to **Directory \> Profile Editor**
+* In to your Okta Admin Console navigate to **Directory \> Profile Editor**
 
 * Select the user profile (e.g., **My Web App**) and click **Add Attribute**
 
