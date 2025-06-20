@@ -1,10 +1,10 @@
-## Expense Dashboard Built with Express.js, Okta and Passport.js
+## Expense Dashboard Built with Express.js, Okta and Passport
 
 This project shows how to build a secure team-scoped expense dashboard with a secure login system. Users see expenses only for their team, making it easy to track spending without hassle.
 
 ## Features
 
-* Single Sign-On via Okta with OpenID Connect, built using Passport.js for flexible and secure authentication.  
+* Single Sign-On via Okta with OpenID Connect, built using Passport for flexible and secure authentication.  
 * Passwordless login support with FIDO2 (WebAuthn)   
 * Role-based access control using custom claims  
 
