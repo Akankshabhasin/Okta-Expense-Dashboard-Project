@@ -30,9 +30,9 @@ npm ci
 **3\. Configure .env File**
 
 ```
-OKTA_ISSUER=https://<Add your custom Authorization URL here>/oauth2/default 
-OKTA_CLIENT_ID=<Add your client id>
-OKTA_CLIENT_SECRET=<Add your client secret>
+OKTA_ISSUER=https://{yourOktaDomain}/oauth2/default 
+OKTA_CLIENT_ID={clientId}
+OKTA_CLIENT_SECRET={clientSecret}
 APP_BASE_URL=http://localhost:3000
 POST_LOGOUT_URL=http://localhost:3000
 ALL_TEAMS_NAME=TeamName1,TeamName2,Team Name3
