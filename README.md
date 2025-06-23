@@ -73,9 +73,9 @@ This project uses a custom user attribute (`department`) in Okta to scope access
 
 #### **2\. Map the Custom Attribute to Your Application**
 
-* Next, in the Profile Editor, under the Attributes section, click Mappings. Select Okta User to [Your App Name]
+* Next, in the **Profile Editor**, under the Attributes section, click **Mappings**. Select Okta User to [Your App Name]
 
-* Find the department attribute you just created. In the input field next to it, enter user.department. Click the arrow dropdown, select "Apply mapping on user create and update," and then click Save Mappings.
+* Find the department attribute you just created. In the input field next to it, enter `user.department`. Click the arrow dropdown, select **"Apply mapping on user create and update,"** and then click **Save Mappings**.
 
 #### **3\. Assign Departments to Users**
 
@@ -112,3 +112,5 @@ node index.js
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser and log in using your Okta credentials.
+
+**Note:** If you are currently using your Developer Console, you already have a Single Sign-On (SSO) session for your Org. You will be automatically logged into your application as the same user that is using the Developer Console. You may want to use an incognito tab to test the flow from a blank slate.
