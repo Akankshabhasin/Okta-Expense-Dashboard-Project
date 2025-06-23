@@ -49,9 +49,11 @@ ALL_TEAMS_NAME=TeamName1,TeamName2,Team Name3
     1. **App name:** (e.g., `My Express App`)  
     2. **Sign-in redirect URIs:** `http://localhost:3000/authorization-code/callback`  
     3. **Sign-out redirect URIs:** [`http://localhost:3000`](http://localhost:3000)  
-    5. Configure an [access policy](https://developer.okta.com/docs/guides/configure-access-policy/main/)
+    4. **Assignments:** Select Allow everyone in your organization to access.
+    5. Once the app is created, go to the General tab. Copy the Client ID, Client Secret, and your Okta domain (used for the issuer URL). You will need these for the .env file.
+    6. Configure an [access policy](https://developer.okta.com/docs/guides/configure-access-policy/main)
 
-### **Set Up Custom Claims for Department Information:** /suggested new or maybe mention
+### **Set Up Custom Claims for Department Information:** 
 
 This project uses a custom user attribute (`department`) in Okta to scope access and filter expense data by team. Here’s how to set it up:
 
@@ -69,7 +71,13 @@ This project uses a custom user attribute (`department`) in Okta to scope access
 
   * Data type: string
 
-#### **2\. Assign Departments to Users**
+#### **2\. Map the Custom Attribute to Your Application**
+
+* Next, in the Profile Editor, under the Attributes section, click Mappings. Select Okta User to [Your App Name]
+
+* Find the department attribute you just created. In the input field next to it, enter user.department. Click the arrow dropdown, select "Apply mapping on user create and update," and then click Save Mappings.
+
+#### **3\. Assign Departments to Users**
 
 * Go to **Directory \> People**
 
@@ -77,7 +85,7 @@ This project uses a custom user attribute (`department`) in Okta to scope access
 
 * Set the `department` field to the user’s team (e.g., `Finance`, `Marketing`, `Customer Success`, `all` (for admin))
 
-#### **3\. Create a Custom Claim in the Authorization Server**
+#### **4\. Create a Custom Claim in the Authorization Server**
 
 * In the Admin Console, go to **Security \> API \> Authorization Servers**
 
