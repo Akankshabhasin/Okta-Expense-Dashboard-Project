@@ -53,6 +53,7 @@ ALL_TEAMS_NAME=TeamName1,TeamName2,Team Name3
     5. Once the app is created, go to the General tab. Copy the Client ID, Client Secret, and your Okta domain (used for the issuer URL). You will need these for the .env file.
     6. Configure an [access policy](https://developer.okta.com/docs/guides/configure-access-policy/main)
 
+
 ### **Set Up Custom Claims for Department Information:** 
 
 This project uses a custom user attribute (`department`) in Okta to scope access and filter expense data by team. Here’s how to set it up:
@@ -84,6 +85,8 @@ This project uses a custom user attribute (`department`) in Okta to scope access
 * Select a user, click **Profile**
 
 * Set the `department` field to the user’s team (e.g., `Finance`, `Marketing`, `Customer Success`, `all` (for admin))
+
+* **Note:** Ensure you update the department for all user profiles associated with different teams. Also, replace the placeholder team names in the .env file with the actual team names that you want. 
 
 #### **4\. Create a Custom Claim in the Authorization Server**
 
