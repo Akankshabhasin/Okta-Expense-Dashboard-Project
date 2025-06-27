@@ -26,9 +26,6 @@
         <div>
           <% if (user) { %>
           <a href="/dashboard" class="btn btn-light btn-sm me-2">Dashboard</a>
-          <% if (user.roles && (user.roles.includes('lead') || user.roles.includes('finance'))) { %>
-          <a href="/approvals" class="btn btn-warning btn-sm me-2">Approvals</a>
-          <% } %>
           <a href="/profile" class="btn btn-light btn-sm me-2">Profile</a>
           <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
           <% } else { %>
@@ -38,9 +35,9 @@
       </div>
     </nav>
 
-  <div class="container content">
+  <main class="container content">
     <%- body %>
-  </div>
+  </main>
 
   <footer class="text-center mt-5 mb-3 text-muted">
     &copy; Okta Inc. Expense Dashboard

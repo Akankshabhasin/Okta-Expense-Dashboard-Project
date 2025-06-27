@@ -1,4 +1,4 @@
-## Expense Dashboard Built with Express.js, Okta and Passport
+## Expense Dashboard Built with Express, Okta and Passport
 
 This project shows how to build a secure team-scoped expense dashboard with a secure login system. Users see expenses only for their team, making it easy to track spending without hassle.
 
@@ -40,18 +40,25 @@ ALL_TEAMS_NAME=TeamName1,TeamName2,Team Name3
 
 **4\. Create an OIDC Application in Okta**
 
-  1. Sign up for a free [Integrator Free Plan](https://developer.okta.com/signup/). If you already have an account, directly [login](https://developer.okta.com/login/) to the [Okta Developer Console](https://developer.okta.com/signup/).   
-  2. Navigate to **Applications** \> **Create App Integration**.  
-  3. Choose:  
-    1. **Sign-in method:** OIDC \- OpenID Connect  
-    2. **Application type:** Web Application  
-  4. Fill in:  
-    1. **App name:** (e.g., `My Express App`)  
-    2. **Sign-in redirect URIs:** `http://localhost:3000/authorization-code/callback`  
-    3. **Sign-out redirect URIs:** [`http://localhost:3000`](http://localhost:3000)  
-    4. **Assignments:** Select Allow everyone in your organization to access.
-    5. Once the app is created, go to the General tab. Copy the Client ID, Client Secret, and your Okta domain (used for the issuer URL). You will need these for the .env file.
-    6. Configure an [access policy](https://developer.okta.com/docs/guides/configure-access-policy/main)
+1. Sign up for a free [Integrator Free Plan](https://developer.okta.com/signup/). If you already have an account, directly [login](https://developer.okta.com/login/) to the [Okta Developer Console](https://developer.okta.com/signup/).  
+
+2. Navigate to **Applications** &gt; **Create App Integration**.  
+
+3. Choose:  
+   * **Sign-in method:** OIDC - OpenID Connect  
+   * **Application type:** Web Application  
+
+4. Fill in:  
+   * **App name:** (e.g., `My Express App`)  
+   * **Sign-in redirect URIs:** `http://localhost:3000/authorization-code/callback`  
+   * **Sign-out redirect URIs:** [`http://localhost:3000`](http://localhost:3000)  
+   * **Assignments:** Select Allow everyone in your organization to access.  
+
+   * Once the app is created, go to the General tab. Copy the Client ID, Client Secret, and your Okta domain (used for the issuer URL). You will need these for the `.env` file.  
+
+   * Configure an [access policy](https://developer.okta.com/docs/guides/configure-access-policy/main)
+
+
 
 
 ### **Set Up Custom Claims for Department Information:** 
@@ -111,9 +118,7 @@ This project uses a custom user attribute (`department`) in Okta to scope access
 ### Run the Application
 
 ```
-node index.js
+npm start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser and log in using your Okta credentials.
-
-**Note:** If you are currently using your Developer Console, you already have a Single Sign-On (SSO) session for your Org. You will be automatically logged into your application as the same user that is using the Developer Console. You may want to use an incognito tab to test the flow from a blank slate.
