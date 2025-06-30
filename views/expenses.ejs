@@ -1,6 +1,6 @@
 <h1><%= team.label %></h1>
-<p>Welcome to the <span style="font-weight: bold;"><%= team.label %></span> team page.</p>
-
+<div>Welcome to the <h6 style="display: inline-block; margin: 0;"><%= team.label %></h6> team page.</div>
+<br/>
 <% if (expenses && expenses.length > 0) { %>
 <h3>Expenses</h3>
 <table class="table table-bordered">
@@ -21,7 +21,7 @@
     <% }) %>
   </tbody>
 </table>
-<div class="alert alert-info"><span style="font-weight: bold;">Total:</span> $<%= total %></div>
+<div class="alert alert-info"><h6 style="display: inline-block; margin: 0;">Total:</h6> $<%= total %></div>
 <% } else { %>
 <p>No expenses found for this team.</p>
 <% } %>
