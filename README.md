@@ -4,13 +4,17 @@ This project shows how to build a secure team-scoped expense dashboard with a se
 
 ## Features
 
-* Single Sign-On via Okta with OpenID Connect, built using Passport for flexible and secure authentication.  
+* OpenID Connect(OIDC) App, built with Express and Passport for flexible and secure authentication 
+* Authorization Code Flow with PKCE, which is the most secure flow for server-side web apps 
 * Passwordless login support with FIDO2 (WebAuthn)   
-* Role-based access control using custom claims  
+* Custom claim-based team expense dashboard
+
 
 ## Prerequisites
 
 * Node.js installed (v22+ recommended)
+
+* [Okta Integrator Free Plan org](https://developer.okta.com/signup/)
 
 ## Getting Started
 
