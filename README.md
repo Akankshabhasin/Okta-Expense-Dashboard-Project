@@ -54,7 +54,9 @@ ALL_TEAMS_NAME=TeamName1,TeamName2,Team Name3
    * **Sign-out redirect URIs:** [`http://localhost:3000`](http://localhost:3000)  
    * **Assignments:** Select Allow everyone in your organization to access.  
 
-   * Once the app is created, go to the General tab. Copy the Client ID, Client Secret, and your Okta domain (used for the issuer URL). You will need these for the `.env` file.  
+   * After creating the app, click the edit button under Client Credentials and enable Require PKCE as additional verification.
+
+   * Copy the Client ID, Client Secret, and your Okta domain (used for the issuer URL). You will need these for the `.env` file.  
 
    * Configure an [access policy](https://developer.okta.com/docs/guides/configure-access-policy/main)
 
@@ -91,7 +93,7 @@ This project uses a custom user attribute (`department`) in Okta to scope access
 
 * Select a user, click **Profile**
 
-* Set the `department` field to the user’s team (e.g., `Finance`, `Marketing`, `Customer Success`, `all` (for admin))
+* Set the `department` field to the user’s team (e.g., `Finance`, `Marketing`, `Support`, `all` (for admin))
 
 * **Note:** Ensure you update the department for all user profiles associated with different teams. Also, replace the placeholder team names in the .env file with the actual team names that you want. 
 
