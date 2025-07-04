@@ -1,7 +1,6 @@
 import express from 'express';
 import session from 'express-session';
-import passport from 'passport';
-import setupOIDC from './auth.js';
+import passport from 'passport'; 
 import routes from './routes.js';
 import expressLayouts from 'express-ejs-layouts';
 
@@ -21,7 +20,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-setupOIDC();
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function (obj, done) {
+  done(null, obj);
+});
 
 app.use('/', routes);
 
