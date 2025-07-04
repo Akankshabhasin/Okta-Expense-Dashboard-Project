@@ -1,5 +1,5 @@
 <h1>Dashboard</h1>
-<p>Welcome, <%= user.profile.displayName || user.profile.name %></p>
+<p>Welcome, <%= user.profile.name || 'User' %></p>
 
 <h3>Your Teams</h3>
 <% if (teams && teams.length > 0) { %>
