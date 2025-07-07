@@ -55,8 +55,8 @@ ALL_TEAMS_NAME=TeamName1,TeamName2,Team Name3
 4. Fill in:  
    * **App name:** (e.g., `My Express App`)  
    * **Sign-in redirect URIs:** `http://localhost:3000/authorization-code/callback`  
-   * **Sign-out redirect URIs:** [`http://localhost:3000`](http://localhost:3000)  
-   * **Assignments:** Select Allow everyone in your organization to access.  
+   * **Sign-out redirect URIs:** `http://localhost:3000`  
+   * **Assignments:** Select **Allow everyone** in your organization to access.  
 
    * After creating the app, click the edit button under Client Credentials and enable Require PKCE as additional verification.
 
@@ -115,7 +115,7 @@ This project uses a custom user attribute (`department`) in Okta to scope access
 
   * **Include in token type:** ID Token (and optionally Access Token)
 
-  * **Value type:** `Expression`
+  * **Value type:** Select **Expression**
 
   * **Value:** `user.department` (this pulls from the Okta’s user profile attribute)
 
