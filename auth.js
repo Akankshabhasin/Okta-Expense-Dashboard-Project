@@ -49,7 +49,7 @@ export async function login(req, res) {
     req.session.save();
 
     const authUrl = client.buildAuthorizationUrl(openIdClientConfig, {
-      scope: "openid profile email offline_access department",
+      scope: "openid profile email offline_access",
       state,
       code_challenge,
       code_challenge_method: "S256",
