@@ -1,7 +1,7 @@
 import * as client from "openid-client";
 import "dotenv/config";
 
-const ALL_TEAMS_NAME = process.env.ALL_TEAMS_NAME;
+const ALL_TEAMS_NAME = "Advocacy, Support, Dev Success"
 
 export function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -19,7 +19,7 @@ function getCallbackUrlWithParams(req) {
 
 function getModifiedDepartment(departmentVal) {
   return departmentVal?.trim()
-    ? departmentVal === "all"
+    ? departmentVal === "admin"
       ? ALL_TEAMS_NAME.split(",").map((teamName) => ({
           id: teamName.trim().toLowerCase().split(" ").join("-"),
           label: teamName,
@@ -86,7 +86,7 @@ export async function authCallback(req, res, next) {
       profile: {
         ...userInfo,
         idToken: tokenSet.id_token,
-        teams: getModifiedDepartment(departmentVal),
+        team: getModifiedDepartment(departmentVal),
         department: departmentVal,
       },
     };

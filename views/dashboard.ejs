@@ -2,12 +2,12 @@
 <p>Welcome, <%= user.profile.name || 'User' %></p>
 
 <h3>Your Teams</h3>
-<% if (teams && teams.length > 0) { %>
+<% if (team && team.length > 0) { %>
 <ul class="list-group">
-  <% teams.forEach(team => { %>
+  <% team.forEach(team => { %>
   <li class="list-group-item d-flex justify-content-between align-items-center">
     <%= team.label %>
-    <a href="/teams/<%= team.id %>" class="btn btn-primary btn-sm">View</a>
+    <a href="/team/<%= team.id %>" class="btn btn-primary btn-sm">View</a>
   </li>
   <% }) %>
 </ul>

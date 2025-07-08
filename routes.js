@@ -19,20 +19,20 @@ router.get("/profile", ensureAuthenticated, (req, res) => {
 });
 
 router.get("/dashboard", ensureAuthenticated, (req, res) => {
-  const teams = req.user?.profile?.teams || [];
+  const team = req.user?.profile?.team || [];
 
   res.render("dashboard", {
     title: "Dashboard",
     user: req.user,
-    teams,
+    team,
   });
 });
 
-router.get("/teams/:id", ensureAuthenticated, (req, res) => {
+router.get("/team/:id", ensureAuthenticated, (req, res) => {
   const teamId = req.params.id;
-  const teams = req.user?.profile?.teams || [];
+  const teamList = req.user?.profile?.team || [];
 
-  const team = teams.find((team) => team.id === teamId);
+  const team = teamList.find((team) => team.id === teamId);
   if (!team) {
     return res.status(404).send("Team not found");
   }

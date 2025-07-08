@@ -1,6 +1,8 @@
 import 'dotenv/config';
 
-const teams = (process.env.ALL_TEAMS_NAME || '').split(',').map((name) => name.trim().toLowerCase().split(' ').join('-'));
+const ALL_TEAMS_NAME = "Advocacy, Support, Dev Success";
+
+const teams = (ALL_TEAMS_NAME || '').split(',').map((name) => name.trim().toLowerCase().split(' ').join('-'));
 
 const sampleNames = ['Alex', 'Jordan', 'Taylor', 'Morgan', 'Casey', 'Riley'];
 
