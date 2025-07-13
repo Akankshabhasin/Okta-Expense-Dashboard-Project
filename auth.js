@@ -1,7 +1,7 @@
 import * as client from "openid-client";
 import "dotenv/config";
 
-const ALL_TEAMS_NAME = "Advocacy, Support, Dev Success"
+import { userTeamMap, ALL_TEAMS_NAME } from './utils.js';
 
 export function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -17,20 +17,31 @@ function getCallbackUrlWithParams(req) {
   return currentUrl;
 }
 
-function getModifiedDepartment(departmentVal) {
-  return departmentVal?.trim()
-    ? departmentVal === "admin"
-      ? ALL_TEAMS_NAME.split(",").map((teamName) => ({
-          id: teamName.trim().toLowerCase().split(" ").join("-"),
-          label: teamName,
-        }))
-      : [
-          {
-            id: departmentVal.split(" ").join("-").toLowerCase(),
-            label: departmentVal.charAt(0).toUpperCase() + departmentVal.slice(1),
-          },
-        ]
-    : [];
+function getModifiedTeam(team) {
+  if (!team?.trim()) return [];
+
+  const toPascalCase = (str) =>
+    str
+      .trim()
+      .split(/\s+/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+
+  const toKebabCase = (str) => str.trim().toLowerCase().split(' ').join('-');
+
+  if (team === 'admin') {
+    return ALL_TEAMS_NAME.map((element) => ({
+      id: toKebabCase(element),
+      label: toPascalCase(element),
+    }));
+  }
+
+  return [
+    {
+      id: toKebabCase(team),
+      label: toPascalCase(team),
+    },
+  ];
 }
 
 async function getClientConfig() {
@@ -46,7 +57,7 @@ export async function login(req, res) {
     const state = client.randomState();
 
     req.session.pkce = { code_verifier, state };
-    req.session.save();
+    req.session.save(); 
 
     const authUrl = client.buildAuthorizationUrl(openIdClientConfig, {
       scope: "openid profile email offline_access",
@@ -77,18 +88,18 @@ export async function authCallback(req, res, next) {
       expectedState: pkce.state,
     });
 
-    const { sub } = tokenSet.claims();
-    const userInfo = await client.fetchUserInfo(openIdClientConfig, tokenSet.access_token, sub);
+    const { name, email } = tokenSet.claims();
+    console.log(tokenSet.claims())
+    const teams = getModifiedTeam(userTeamMap[email]);
+    console.log(userTeamMap[email])
+    console.log(tokenSet)
 
-    const departmentVal = userInfo.department || "";
 
     const userProfile = {
-      profile: {
-        ...userInfo,
-        idToken: tokenSet.id_token,
-        team: getModifiedDepartment(departmentVal),
-        department: departmentVal,
-      },
+      name,
+      email,
+      teams,
+      idToken: tokenSet.id_token,
     };
 
     delete req.session.pkce;
@@ -106,13 +117,26 @@ export async function authCallback(req, res, next) {
   }
 }
 
-export function logout(req, res) {
-  const id_token = req.user?.profile?.idToken;
+export async function logout(req, res) {
+  try {
+    const openIdClientConfig = await getClientConfig();
 
-  req.logout(() => {
-    req.session.destroy(() => {
-      const logoutUrl = `${process.env.OKTA_ISSUER}/v1/logout?id_token_hint=${id_token}&post_logout_redirect_uri=${process.env.POST_LOGOUT_URL}`;
-      res.redirect(logoutUrl);
+    const id_token_hint = req.user?.idToken;
+
+    const logoutUrl = client.buildEndSessionUrl(openIdClientConfig, {
+      id_token_hint,
+      post_logout_redirect_uri: process.env.POST_LOGOUT_URL,
     });
-  });
+
+    req.logout((err) => {
+      if (err) return next(err);
+
+      req.session.destroy((err) => {
+        if (err) return next(err);
+        res.redirect(logoutUrl);
+      });
+    });
+  } catch (error) {
+    res.status(500).send('Something went wrong during logout.');
+  }
 }
