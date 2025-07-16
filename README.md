@@ -7,7 +7,6 @@ This project shows how to build a secure team-scoped expense dashboard with a se
 * OpenID Connect(OIDC) App, built with Express and Passport for flexible and secure authentication 
 * Authorization Code Flow with PKCE, which is recommended for server-side and browser-based web apps
 * Passwordless login support with FIDO2 and WebAuthn  
-* Custom claim-based team expense dashboard view
 
 
 ## Prerequisites
@@ -18,7 +17,7 @@ This project shows how to build a secure team-scoped expense dashboard with a se
 **Table of Contents**
 
 * [Getting Started](#getting-started)
-* [Set Up Custom Claims](#set-up-custom-claims)
+* [How Team Mapping Works](#how-team-mapping-works)
 * [Run the Application](#run-the-application)
 * [Links](#links)
 * [Help](#help)
@@ -68,36 +67,39 @@ POST_LOGOUT_URL=http://localhost:3000
    * Copy the **Client ID**, **Client Secret**, and your **Okta domain** (used for the issuer URL). You will need these for the `.env` file.  
 
 
-### **Set Up Custom Claims** 
+### How Team Mapping Works 
+The application derives the user’s team context from the email claim in the ID token and filters the expense list to display only that team’s data on the dashboard. To customize it, open utils.js and update the following objects:
+* `ALL_TEAMS_NAME` - an array listing every team in your organization.
+* `userTeamMap` - maps each user’s email (or "admin" for full access) to one team.
+* `dummyExpenseData` - holds two sample expenses per team; the UI shows only the entries for the user’s mapped team.
 
-This project uses the `department` attribute from each user's Okta profile to manage access and filter expense data by team. Here's how to set it up.
+```
+export const ALL_TEAMS_NAME = [
+  "finance",
+  "marketing",
+  // add more team names as needed
+];
 
+export const userTeamMap = {
+  "admin@example.com": "admin",
+  "user1@example.com": "Finance",
+  "user2@example.com": "Marketing",
+  // Add more users and departments as needed
+};
 
-#### **1\. Assign Departments to Users**
+export const dummyExpenseData = {
+  finance: [
+    { name: "Alice Johnson", item: "Quarterly audit", amount: 1200 },
+    { name: "Bob Smith",     item: "Budget‑planning", amount: 180 },
+  ],
+  marketing: [
+    { name: "Carol Lee", item: "Ad campaign",      amount: 4500 },
+    { name: "David Kim", item: "Promotional swag", amount: 750 },
+  ],
+  // add more expenses as needed
+};
+```
 
-* In to your Okta Admin Console, navigate to **Directory \> People**
-
-* Select a user, click **Profile**
-
-* Set the `department` field to the user’s team (e.g., Finance, Marketing, Support, admin (for users with admin privileges))
-
-* **Note:** Ensure you update the department for all user profiles associated with different teams in the auth.js and expenseData.js file. Also, replace the placeholder team names in the .env file with the actual team names that you want. 
-
-#### **2\. Create a Custom Claim in the Authorization Server**
-
-* In the Admin Console, go to **Security \> API \> Authorization Servers**
-
-* Select your Authorization Server
-
-* Go to the **Claims** tab and click **Add Claim**
-
-* Configure the claim as follows:
-
-  * **Name:** `department`
-  * **Include in token type:** ID Token and Userinfo / id_token request  
-  * **Value type:** Select Expression
-  * **Value:** `user.department`
-  * **Include in:** Select Any scope
 
 ### Run the Application
 
