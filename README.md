@@ -69,9 +69,9 @@ POST_LOGOUT_URL=http://localhost:3000
 
 ### How Team Mapping Works 
 The application derives the user’s team context from the email claim in the ID token and filters the expense list to display only that team’s data on the dashboard. To customize it, open utils.js and update the following objects:
-* `ALL_TEAMS_NAME` - an array listing every team in your organization.
-* `userTeamMap` - maps each user’s email (or "admin" for full access) to one team.
-* `dummyExpenseData` - holds two sample expenses per team; the UI shows only the entries for the user’s mapped team.
+* `ALL_TEAMS_NAME` - an array listing every team in your organization
+* `userTeamMap` - maps each user’s email (or "admin" for full access) to one team
+* `dummyExpenseData` - holds sample expenses per team
 
 ```
 export const ALL_TEAMS_NAME = [
