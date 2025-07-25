@@ -1,7 +1,7 @@
 import * as client from "openid-client";
 import "dotenv/config";
 
-import { userTeamMap, ALL_TEAMS_NAME } from './utils.js';
+import { userTeamMap, getModifiedTeam } from './utils.js';
 
 export function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
@@ -15,33 +15,6 @@ function getCallbackUrlWithParams(req) {
   const protocol = req.headers["x-forwarded-proto"] || req.protocol;
   const currentUrl = new URL(`${protocol}://${host}${req.originalUrl}`);
   return currentUrl;
-}
-
-function getModifiedTeam(team) {
-  if (!team?.trim()) return [];
-
-  const toPascalCase = (str) =>
-    str
-      .trim()
-      .split(/\s+/)
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-      .join(' ');
-
-  const toKebabCase = (str) => str.trim().toLowerCase().split(' ').join('-');
-
-  if (team === 'admin') {
-    return ALL_TEAMS_NAME.map((element) => ({
-      id: toKebabCase(element),
-      label: toPascalCase(element),
-    }));
-  }
-
-  return [
-    {
-      id: toKebabCase(team),
-      label: toPascalCase(team),
-    },
-  ];
 }
 
 async function getClientConfig() {
@@ -90,7 +63,11 @@ export async function authCallback(req, res, next) {
 
     const { name, email } = tokenSet.claims();
     console.log(tokenSet.claims())
+
+
     const teams = getModifiedTeam(userTeamMap[email]);
+
+
     console.log(userTeamMap[email])
     console.log(tokenSet)
 

@@ -121,3 +121,30 @@ export const dummyExpenseData = {
     },
   ],
 };
+
+export function getModifiedTeam(team) {
+  if (!team?.trim()) return [];
+
+  const toPascalCase = (str) =>
+    str
+      .trim()
+      .split(/\s+/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+
+  const toKebabCase = (str) => str.trim().toLowerCase().split(' ').join('-');
+
+  if (team === 'admin') {
+    return ALL_TEAMS_NAME.map((element) => ({
+      id: toKebabCase(element),
+      label: toPascalCase(element),
+    }));
+  }
+
+  return [
+    {
+      id: toKebabCase(team),
+      label: toPascalCase(team),
+    },
+  ];
+}

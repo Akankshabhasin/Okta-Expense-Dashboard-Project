@@ -1,13 +1,12 @@
-## Expense Dashboard Built with Express, Okta, and Passport
+## Build a secure Express app with Okta using OIDC and OAuth 2.0
 
-This project shows how to build a secure team-scoped expense dashboard with a secure login system with modern OAuth 2.0 best practices. Users see expenses only for their team, making it easy to track spending while maintaining strong security.
+This project shows how to build a team-scoped expense dashboard with a secure login system with modern OAuth 2.0 best practices. Users see expenses only for their team, making it easy to track spending while maintaining strong security.
 
 ## Features
 
-* OpenID Connect(OIDC) App, built with Express and Passport for flexible and secure authentication 
+* Express web app with Okta OIDC authentication
 * Authorization Code Flow with PKCE, which is recommended for server-side and browser-based web apps
-* Passwordless login support with FIDO2 and WebAuthn  
-
+* `openid-client` library handles the OIDC flow, while `passport` secures the server-side session
 
 ## Prerequisites
 
@@ -28,8 +27,8 @@ This project shows how to build a secure team-scoped expense dashboard with a se
 **1\. Clone the repository**
 
 ```
-git clone https://github.com/oktadev/okta-express-expense-dashboard-example.git
-cd okta-express-expense-dashboard-example
+git clone https://github.com/oktadev/okta-express-oauth-example.git
+cd okta-express-oauth-example
 ```
 
 **2\. Install Dependencies**
@@ -70,7 +69,7 @@ POST_LOGOUT_URL=http://localhost:3000
 ### How Team Mapping Works 
 The application derives the user’s team context from the email claim in the ID token and filters the expense list to display only that team’s data on the dashboard. To customize it, open utils.js and update the following objects:
 * `ALL_TEAMS_NAME` - an array listing every team in your organization
-* `userTeamMap` - maps each user’s email (or "admin" for full access) to one team
+* `userTeamMap` - maps each user’s email (or "admin" for full access) to a specific team
 * `dummyExpenseData` - holds sample expenses per team
 
 ```
@@ -81,9 +80,9 @@ export const ALL_TEAMS_NAME = [
 ];
 
 export const userTeamMap = {
-  "admin@example.com": "admin",
-  "user1@example.com": "Finance",
-  "user2@example.com": "Marketing",
+  "hannah.smith@task-vantage.com": "admin",
+  "carol.lee@task-vantage.com": "Finance",
+  "alice.johnson@task-vantage.com": "Marketing",
   // Add more users and departments as needed
 };
 
@@ -113,8 +112,8 @@ Open [http://localhost:3000](http://localhost:3000) in your browser and log in u
 
 This example uses the following resources:
 
-* [Passport](https://www.passportjs.org)
 * [openid-client](https://www.passportjs.org/packages/openid-client)
+* [Passport](https://www.passportjs.org)
 * [RFC 7636: Proof Key for Code Exchange by OAuth Public Clients](https://www.rfc-editor.org/rfc/rfc7636)
 * [Authorization Code Grant with PKCE](https://developer.okta.com/docs/guides/implement-grant-type/authcodepkce/main)
 
