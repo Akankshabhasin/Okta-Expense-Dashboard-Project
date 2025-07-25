@@ -120,7 +120,7 @@ This example uses the following resources:
 
 ## Help
 
-Please post any questions as comments on the [blog post][https://developer.okta.com/blog/2025/07/28/express-oauth-pkce], or visit our [Okta Developer Forums](https://devforum.okta.com/).
+Please post any questions as comments on the [blog post](https://developer.okta.com/blog/2025/07/28/express-oauth-pkce), or visit our [Okta Developer Forums](https://devforum.okta.com/).
 
 ## License
 
