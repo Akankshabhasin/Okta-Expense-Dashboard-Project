@@ -1,4 +1,4 @@
-## Secure your Express app with OAuth 2.0, OIDC, and PKCE
+## Secure Your Express App with OAuth 2.0, OIDC, and PKCE
 
 This project shows how to build a team-scoped expense dashboard with a secure login system with modern OAuth 2.0 best practices. Users see expenses only for their team, making it easy to track spending while maintaining strong security.
 
@@ -27,8 +27,8 @@ This project shows how to build a team-scoped expense dashboard with a secure lo
 **1\. Clone the repository**
 
 ```
-git clone https://github.com/oktadev/okta-express-oauth-example.git
-cd okta-express-oauth-example
+git clone https://github.com/oktadev/okta-express-oauth-pkce-example.git
+cd okta-express-oauth-pkce-example
 ```
 
 **2\. Install Dependencies**
