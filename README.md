@@ -1,6 +1,6 @@
 ## Secure Your Express App with OAuth 2.0, OIDC, and PKCE
 
-This project shows how to build a team-scoped expense dashboard with a secure login system with modern OAuth 2.0 best practices. Users see expenses only for their team, making it easy to track spending while maintaining strong security.
+This repository shows how to build a team-scoped expense dashboard with a secure login system with modern OAuth 2.0 best practices. Users see expenses only for their team, making it easy to track spending while maintaining strong security. Please read [Secure Your Express App with OAuth 2.0, OIDC, and PKCE](https://developer.okta.com/blog/2025/07/28/express-oauth-pkce) for a detailed guide through.
 
 ## Features
 
@@ -40,7 +40,7 @@ npm ci
 **3\. Configure .env File**
 
 ```
-OKTA_ISSUER=https://{yourOktaDomain}/oauth2/default 
+OKTA_ISSUER=https://{yourOktaDomain}
 OKTA_CLIENT_ID={clientId}
 OKTA_CLIENT_SECRET={clientSecret}
 APP_BASE_URL=http://localhost:3000
@@ -112,7 +112,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser and log in u
 
 This example uses the following resources:
 
-* [openid-client](https://www.passportjs.org/packages/openid-client)
+* [openid-client](https://www.npmjs.com/package/openid-client)
 * [Passport](https://www.passportjs.org)
 * [RFC 7636: Proof Key for Code Exchange by OAuth Public Clients](https://www.rfc-editor.org/rfc/rfc7636)
 * [Authorization Code Grant with PKCE](https://developer.okta.com/docs/guides/implement-grant-type/authcodepkce/main)
